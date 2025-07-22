@@ -36,10 +36,19 @@ public class Store
 
     public void RemoveProduct(string productName)
     {
-        var productToRemove = Products.Find(p => p.Name == "SomeName");
+        var productToRemove = Products.Find(p => p.Name == productName);
         if (productToRemove != null)
         {
             Products.Remove(productToRemove);
+        }
+    }
+
+    public void SearchForProduct(string productName)
+    {
+        foreach (var p in Products)
+        {
+            if (p.Name != productName) continue;
+            Console.WriteLine(p);
         }
     }
 }

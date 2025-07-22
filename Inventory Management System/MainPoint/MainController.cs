@@ -49,13 +49,14 @@ public class MainController
         if (productName == null) return;
         
         _store.RemoveProduct(productName);
-        
-       
     }
 
     public void searchAProduct()
     {
-        throw new NotImplementedException();
+        var productName = getProductName();
+        if (productName == null) return;
+        
+        _store.SearchForProduct(productName);
     }
     
     // private utils 
@@ -87,7 +88,7 @@ public class MainController
     {
         Console.WriteLine("Please enter the product name");
         var input = Console.ReadLine();
-        if (!string.IsNullOrEmpty(input)) return input;
+        if (!string.IsNullOrEmpty(input)) return input.Trim();
         UserMessages.ShowGeneralErrorMessage();
         return null;
     }
