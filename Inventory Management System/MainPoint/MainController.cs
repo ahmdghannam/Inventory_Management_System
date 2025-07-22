@@ -27,15 +27,10 @@ public class MainController
 
     public void EditProduct()
     {
-        Console.WriteLine("Please enter the product name");
-        var input = Console.ReadLine();
-        if (string.IsNullOrEmpty(input))
-        {
-            UserMessages.ShowGeneralErrorMessage();
-            return;
-        }
+        var productName = getProductName();
+        if (productName == null) return;
 
-        if (!_store.hasProductWithName(input))
+        if (!_store.hasProductWithName(productName))
         {
             UserMessages.ShowProductNameNotFoundMessage();
             return;
@@ -43,9 +38,27 @@ public class MainController
         var product = parseProductFromUserInput();
         if (product == null) return;
         
-        _store.EditProduct(input, product);
+        _store.EditProduct(productName, product);
     }
 
+
+
+    public void deleteProduct()
+    {
+        var productName = getProductName();
+        if (productName == null) return;
+        
+        _store.RemoveProduct(productName);
+        
+       
+    }
+
+    public void searchAProduct()
+    {
+        throw new NotImplementedException();
+    }
+    
+    // private utils 
     private Product? parseProductFromUserInput()
     {
         Console.WriteLine("Please enter the product name, price, quantity separated by commas and inorder");
@@ -70,13 +83,12 @@ public class MainController
         return new Product(name, price, quantity);
     }
 
-    public void deleteProduct()
+    private string? getProductName()
     {
-        throw new NotImplementedException();
-    }
-
-    public void searchAProduct()
-    {
-        throw new NotImplementedException();
+        Console.WriteLine("Please enter the product name");
+        var input = Console.ReadLine();
+        if (!string.IsNullOrEmpty(input)) return input;
+        UserMessages.ShowGeneralErrorMessage();
+        return null;
     }
 }

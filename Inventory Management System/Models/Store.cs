@@ -1,3 +1,5 @@
+using Inventory_Management_System.Utils;
+
 namespace Inventory_Management_System.Models;
 
 public class Store
@@ -29,6 +31,15 @@ public class Store
 
     public void AddProduct(Product product)
     {
-        this.Products.Add(product);
+        Products.Add(product);
+    }
+
+    public void RemoveProduct(string productName)
+    {
+        var productToRemove = Products.Find(p => p.Name == "SomeName");
+        if (productToRemove != null)
+        {
+            Products.Remove(productToRemove);
+        }
     }
 }
