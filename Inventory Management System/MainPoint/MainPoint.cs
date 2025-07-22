@@ -1,9 +1,13 @@
 ﻿using Inventory_Management_System.Models;
+using Inventory_Management_System.Utils;
 
 class MainPoint
 {
-    private Store Store { get; set; }
-    private static bool showWelcomeMessage = true;
+    private static Store _store = new Store();
+    private static bool _showWelcomeMessage = true;
+
+    // constants
+    private const int CLOSE_FLAG = 6;
 
     static void Main(string[] args)
     {
@@ -11,13 +15,15 @@ class MainPoint
         {
             ShowInstructions();
             var userInput = Console.ReadLine();
+
             if (int.TryParse(userInput, out var number))
             {
+                if (number == CLOSE_FLAG) break;
                 HandleUserChoose(number);
             }
             else
             {
-                ShowErrorMessage();
+                UserMessages.ShowOptionErrorMessage();
             }
         }
     }
@@ -27,7 +33,7 @@ class MainPoint
         switch (number)
         {
             case 1:
-
+                AddProduct();
                 break;
             case 2:
                 break;
@@ -37,50 +43,48 @@ class MainPoint
                 break;
             case 5:
                 break;
-            case 6:
-                break;
             default:
-                ShowErrorMessage();
+                UserMessages.ShowOptionErrorMessage();
                 break;
         }
     }
 
-    private static void ShowErrorMessage()
+    private static void AddProduct()
     {
-        Console.WriteLine("Invalid number. please enter a valid option !!");
+        Console.WriteLine("Please enter the product name, price, quantity separated by commas and inorder");
+        var input = Console.ReadLine();
+
+        var values = input.Split(',');
+        if (values.Length < 3 || string.IsNullOrEmpty(input))
+        {
+            UserMessages.ShowGeneralErrorMessage();
+            return;
+        }
+
+        var name = values[0];
+
+        if (!double.TryParse(values[1], out var price)
+            || !int.TryParse(values[2], out var quantity))
+        {
+            UserMessages.ShowGeneralErrorMessage();
+            return;
+        }
+
+        var product = new Product(name, price, quantity);
+        Console.WriteLine("the product has been added");
+        _store.AddProduct(product);
     }
 
     private static void ShowInstructions()
     {
-        if (showWelcomeMessage)
+        if (_showWelcomeMessage)
         {
-            ShowWelcomeMessage();
-            showWelcomeMessage = false;
+            UserMessages.ShowWelcomeMessage();
+            _showWelcomeMessage = false;
         }
         else
         {
-            SecondaryWelcomeMessage();
+            UserMessages.SecondaryWelcomeMessage();
         }
-    }
-
-    private static void ShowWelcomeMessage()
-    {
-        Console.WriteLine("Welcome to the Store!");
-        Console.WriteLine("Here you can manage and the private store you own!");
-        Console.WriteLine("For help or any information contact me at info@Gh.com");
-        Console.WriteLine("Please choose one of the following options: ");
-        Console.WriteLine("1.Add a product: please write the product name, price, and quantity");
-        Console.WriteLine("2.View all products");
-        Console.WriteLine("3.Edit a product: please provide the name of the product");
-        Console.WriteLine("4.Delete a product: please provide the name of the product");
-        Console.WriteLine("5.Search for a product: please provide the name of the product");
-
-        Console.WriteLine("6.Exit");
-    }
-
-    private static void SecondaryWelcomeMessage()
-    {
-        Console.WriteLine("Welcome Again!");
-        Console.WriteLine("Please choose an operation number !");
     }
 }
