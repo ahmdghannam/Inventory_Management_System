@@ -4,16 +4,11 @@ namespace Inventory_Management_System.Models;
 
 public class Store
 {
-    private List<Product> Products;
+    private List<Product> Products = new();
 
-    public Store()
-    {
-        Products = new List<Product>();
-    }
+    public List<Product> GetAllProducts() => Products;
 
-    public List<Product> getAllProducts() => Products;
-
-    public bool hasProductWithName(string name) => Products.Exists(product => product.Name == name);
+    public bool HasProductWithName(string name) => Products.Exists(product => product.Name == name);
 
     public bool EditProduct(string oldName, Product product)
     {

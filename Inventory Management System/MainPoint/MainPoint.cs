@@ -1,16 +1,13 @@
-﻿using Inventory_Management_System.MainPoint;
-using Inventory_Management_System.Models;
-using Inventory_Management_System.Utils;
+﻿using Inventory_Management_System.Utils;
 
-class MainPoint
+namespace Inventory_Management_System.MainPoint;
+
+internal abstract class MainPoint
 {
-   private static MainController _controller = new MainController();
+    private static readonly MainController Controller = new MainController();
     private static bool _showWelcomeMessage = true;
 
-    // constants
-    private const int CLOSE_FLAG = 6;
-
-    static void Main(string[] args)
+    private static void Main(string[] args)
     {
         while (true)
         {
@@ -19,8 +16,8 @@ class MainPoint
 
             if (int.TryParse(userInput, out var number))
             {
-                if (number == CLOSE_FLAG) break;
-                HandleUserChoose(number);
+                if (number == Constants.CloseFlag) break;
+                ProcessUserChoice(number);
             }
             else
             {
@@ -28,33 +25,6 @@ class MainPoint
             }
         }
     }
-
-    private static void HandleUserChoose(int number)
-    {
-        switch (number)
-        {
-            case 1:
-                _controller.AddProduct();
-                break;
-            case 2:
-                _controller.viewAllProducts();
-                break;
-            case 3:
-                _controller.EditProduct();
-                break;
-            case 4:
-                _controller.deleteProduct();
-                break;
-            case 5:
-                _controller.searchAProduct();
-                break;
-            default:
-                UserMessages.ShowOptionErrorMessage();
-                break;
-        }
-    }
-
-
 
     private static void ShowInstructions()
     {
@@ -66,6 +36,31 @@ class MainPoint
         else
         {
             UserMessages.ShowSecondaryWelcomeMessage();
+        }
+    }
+
+    private static void ProcessUserChoice(int number)
+    {
+        switch (number)
+        {
+            case Constants.AddProduct:
+                Controller.AddProduct();
+                break;
+            case Constants.ViewAllProducts:
+                Controller.ViewAllProducts();
+                break;
+            case Constants.EditAProduct:
+                Controller.EditProduct();
+                break;
+            case Constants.DeleteAProduct:
+                Controller.DeleteProduct();
+                break;
+            case Constants.SearchAProduct:
+                Controller.SearchAProduct();
+                break;
+            default:
+                UserMessages.ShowOptionErrorMessage();
+                break;
         }
     }
 }

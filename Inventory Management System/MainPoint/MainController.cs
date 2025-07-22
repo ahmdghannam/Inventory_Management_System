@@ -5,19 +5,19 @@ namespace Inventory_Management_System.MainPoint;
 
 public class MainController
 {
-    private static Store _store = new Store();
+    private static readonly Store _store = new Store();
 
     public void AddProduct()
     {
-        var product = parseProductFromUserInput();
+        var product = ParseProductFromUserInput();
         if (product == null) return;
         _store.AddProduct(product);
         Console.WriteLine("the product has been added");
     }
 
-    public void viewAllProducts()
+    public void ViewAllProducts()
     {
-        var products = _store.getAllProducts();
+        var products = _store.GetAllProducts();
         for (var i = 0; i < products.Count; i++)
         {
             var product = products[i];
@@ -27,40 +27,40 @@ public class MainController
 
     public void EditProduct()
     {
-        var productName = getProductName();
+        var productName = GetProductName();
         if (productName == null) return;
 
-        if (!_store.hasProductWithName(productName))
+        if (!_store.HasProductWithName(productName))
         {
             UserMessages.ShowProductNameNotFoundMessage();
             return;
         }
-        var product = parseProductFromUserInput();
+        var product = ParseProductFromUserInput();
         if (product == null) return;
         
         _store.EditProduct(productName, product);
     }
-
-
-
-    public void deleteProduct()
+    
+    public void DeleteProduct()
     {
-        var productName = getProductName();
+        var productName = GetProductName();
         if (productName == null) return;
         
         _store.RemoveProduct(productName);
     }
 
-    public void searchAProduct()
+    public void SearchAProduct()
     {
-        var productName = getProductName();
+        var productName = GetProductName();
         if (productName == null) return;
         
         _store.SearchForProduct(productName);
     }
     
+    
+    
     // private utils 
-    private Product? parseProductFromUserInput()
+    private Product? ParseProductFromUserInput()
     {
         Console.WriteLine("Please enter the product name, price, quantity separated by commas and inorder");
         var input = Console.ReadLine();
@@ -83,8 +83,7 @@ public class MainController
 
         return new Product(name, price, quantity);
     }
-
-    private string? getProductName()
+    private string? GetProductName()
     {
         Console.WriteLine("Please enter the product name");
         var input = Console.ReadLine();
