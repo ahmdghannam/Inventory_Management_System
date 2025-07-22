@@ -1,9 +1,10 @@
-﻿using Inventory_Management_System.Models;
+﻿using Inventory_Management_System.MainPoint;
+using Inventory_Management_System.Models;
 using Inventory_Management_System.Utils;
 
 class MainPoint
 {
-    private static Store _store = new Store();
+   private static MainController _controller = new MainController();
     private static bool _showWelcomeMessage = true;
 
     // constants
@@ -33,9 +34,10 @@ class MainPoint
         switch (number)
         {
             case 1:
-                AddProduct();
+                _controller.AddProduct();
                 break;
             case 2:
+                _controller.viewAllProducts();
                 break;
             case 3:
                 break;
@@ -49,31 +51,7 @@ class MainPoint
         }
     }
 
-    private static void AddProduct()
-    {
-        Console.WriteLine("Please enter the product name, price, quantity separated by commas and inorder");
-        var input = Console.ReadLine();
 
-        var values = input.Split(',');
-        if (values.Length < 3 || string.IsNullOrEmpty(input))
-        {
-            UserMessages.ShowGeneralErrorMessage();
-            return;
-        }
-
-        var name = values[0];
-
-        if (!double.TryParse(values[1], out var price)
-            || !int.TryParse(values[2], out var quantity))
-        {
-            UserMessages.ShowGeneralErrorMessage();
-            return;
-        }
-
-        var product = new Product(name, price, quantity);
-        Console.WriteLine("the product has been added");
-        _store.AddProduct(product);
-    }
 
     private static void ShowInstructions()
     {

@@ -9,9 +9,10 @@ public class Store
         Products = new List<Product>();
     }
 
+    public List<Product> getAllProducts() => Products;
+
     public void AddProduct(Product product)
     {
         this.Products.Add(product);
     }
-    
 }
