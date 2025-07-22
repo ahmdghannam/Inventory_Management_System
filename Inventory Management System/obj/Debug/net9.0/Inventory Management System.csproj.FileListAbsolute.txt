@@ -1,0 +1,14 @@
+E:\Prog24\Foothill BE-25\C#\Inventory Management System\Inventory Management System\Inventory Management System\obj\Debug\net9.0\Inventory Management System.GeneratedMSBuildEditorConfig.editorconfig
+E:\Prog24\Foothill BE-25\C#\Inventory Management System\Inventory Management System\Inventory Management System\obj\Debug\net9.0\Inventory Management System.AssemblyInfoInputs.cache
+E:\Prog24\Foothill BE-25\C#\Inventory Management System\Inventory Management System\Inventory Management System\obj\Debug\net9.0\Inventory Management System.AssemblyInfo.cs
+E:\Prog24\Foothill BE-25\C#\Inventory Management System\Inventory Management System\Inventory Management System\obj\Debug\net9.0\Inventory Management System.csproj.CoreCompileInputs.cache
+E:\Prog24\Foothill BE-25\C#\Inventory Management System\Inventory Management System\Inventory Management System\bin\Debug\net9.0\Inventory Management System.exe
+E:\Prog24\Foothill BE-25\C#\Inventory Management System\Inventory Management System\Inventory Management System\bin\Debug\net9.0\Inventory Management System.deps.json
+E:\Prog24\Foothill BE-25\C#\Inventory Management System\Inventory Management System\Inventory Management System\bin\Debug\net9.0\Inventory Management System.runtimeconfig.json
+E:\Prog24\Foothill BE-25\C#\Inventory Management System\Inventory Management System\Inventory Management System\bin\Debug\net9.0\Inventory Management System.dll
+E:\Prog24\Foothill BE-25\C#\Inventory Management System\Inventory Management System\Inventory Management System\bin\Debug\net9.0\Inventory Management System.pdb
+E:\Prog24\Foothill BE-25\C#\Inventory Management System\Inventory Management System\Inventory Management System\obj\Debug\net9.0\Inventory Management System.dll
+E:\Prog24\Foothill BE-25\C#\Inventory Management System\Inventory Management System\Inventory Management System\obj\Debug\net9.0\refint\Inventory Management System.dll
+E:\Prog24\Foothill BE-25\C#\Inventory Management System\Inventory Management System\Inventory Management System\obj\Debug\net9.0\Inventory Management System.pdb
+E:\Prog24\Foothill BE-25\C#\Inventory Management System\Inventory Management System\Inventory Management System\obj\Debug\net9.0\Inventory Management System.genruntimeconfig.cache
+E:\Prog24\Foothill BE-25\C#\Inventory Management System\Inventory Management System\Inventory Management System\obj\Debug\net9.0\ref\Inventory Management System.dll
