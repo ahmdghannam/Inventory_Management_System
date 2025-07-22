@@ -40,10 +40,13 @@ class MainPoint
                 _controller.viewAllProducts();
                 break;
             case 3:
+                _controller.EditProduct();
                 break;
             case 4:
+                _controller.deleteProduct();
                 break;
             case 5:
+                _controller.searchAProduct();
                 break;
             default:
                 UserMessages.ShowOptionErrorMessage();
@@ -62,7 +65,7 @@ class MainPoint
         }
         else
         {
-            UserMessages.SecondaryWelcomeMessage();
+            UserMessages.ShowSecondaryWelcomeMessage();
         }
     }
 }

@@ -27,9 +27,14 @@ public class UserMessages
         Console.WriteLine("6.Exit");
     }
 
-    public static void SecondaryWelcomeMessage()
+    public static void ShowSecondaryWelcomeMessage()
     {
         Console.WriteLine("Welcome Again!");
         Console.WriteLine("Please choose an operation number !");
+    }
+
+    public static void ShowProductNameNotFoundMessage()
+    {
+        Console.WriteLine("Product with this name not found!");
     }
 }

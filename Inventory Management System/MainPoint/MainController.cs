@@ -9,6 +9,45 @@ public class MainController
 
     public void AddProduct()
     {
+        var product = parseProductFromUserInput();
+        if (product == null) return;
+        _store.AddProduct(product);
+        Console.WriteLine("the product has been added");
+    }
+
+    public void viewAllProducts()
+    {
+        var products = _store.getAllProducts();
+        for (var i = 0; i < products.Count; i++)
+        {
+            var product = products[i];
+            Console.WriteLine($"{i + 1} -> {product}");
+        }
+    }
+
+    public void EditProduct()
+    {
+        Console.WriteLine("Please enter the product name");
+        var input = Console.ReadLine();
+        if (string.IsNullOrEmpty(input))
+        {
+            UserMessages.ShowGeneralErrorMessage();
+            return;
+        }
+
+        if (!_store.hasProductWithName(input))
+        {
+            UserMessages.ShowProductNameNotFoundMessage();
+            return;
+        }
+        var product = parseProductFromUserInput();
+        if (product == null) return;
+        
+        _store.EditProduct(input, product);
+    }
+
+    private Product? parseProductFromUserInput()
+    {
         Console.WriteLine("Please enter the product name, price, quantity separated by commas and inorder");
         var input = Console.ReadLine();
 
@@ -16,7 +55,7 @@ public class MainController
         if (values.Length < 3 || string.IsNullOrEmpty(input))
         {
             UserMessages.ShowGeneralErrorMessage();
-            return;
+            return null;
         }
 
         var name = values[0];
@@ -25,21 +64,19 @@ public class MainController
             || !int.TryParse(values[2], out var quantity))
         {
             UserMessages.ShowGeneralErrorMessage();
-            return;
+            return null;
         }
 
-        var product = new Product(name, price, quantity);
-        Console.WriteLine("the product has been added");
-        _store.AddProduct(product);
+        return new Product(name, price, quantity);
     }
 
-    public void viewAllProducts()
+    public void deleteProduct()
     {
-        var products = _store.getAllProducts();
-        for (int i = 0; i < products.Count; i++)
-        {
-            var product = products[i];
-            Console.WriteLine($"{i + 1} -> {product}");
-        }
+        throw new NotImplementedException();
+    }
+
+    public void searchAProduct()
+    {
+        throw new NotImplementedException();
     }
 }
